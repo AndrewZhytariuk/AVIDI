@@ -1,0 +1,46 @@
+API Instraction
+
+1.You can delete Migration in (AVIDI.ApiService/Data/Migrations/Event) after that, you need add migration and update databese
+	- Add-Migration InitialEvent -Context AVIDIDbContext -OutputDir Data/Migrations/Events
+	- Update-Database -Context AVIDIDbContext
+or you can execute Update-Database -Context AVIDIDbContext becose Migration was creat by me in (AVIDI.ApiService/Data/Migrations/Event
+
+2.You need update ConnectionStrings in (appsettings.json, appsettings.Development.json) for your Postgres instans
+
+3. API implement a REST API two functions (add, get) 
+3.1. add
+	Method Post
+	url: https://localhost:7147/DataEvent/add
+	format: JSON
+	result 201
+	for example:
+
+	{
+	"date": "2023-12-12",
+	"events" : [
+	{"title": "event1"},
+	{"title": "event1"}
+	]
+	}
+
+3.2. get
+	Method Get
+	url: https://localhost:7147/DataEvent?year=2023&month=December
+	result:
+
+	[
+		{
+			"id": 1,
+			"date": "2023-12-12T00:00:00+02:00",
+			"events": [
+				{
+					"id": 1,
+					"title": "event1"
+				},
+				{
+					"id": 2,
+					"title": "event1"
+				}
+			]
+		}
+	]
